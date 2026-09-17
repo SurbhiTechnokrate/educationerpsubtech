@@ -7,12 +7,12 @@ export const UpcomingExamsCard = () => {
   const { setCurrentPage } = useApp();
 
   return (
-    <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+    <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between">
       <div>
         {/* Card Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
               <Calendar className="w-4 h-4" />
             </div>
             <h3 className="font-bold text-slate-900 text-sm">Upcoming Exams</h3>
@@ -39,13 +39,13 @@ export const UpcomingExamsCard = () => {
               key={exam.id}
               className="grid grid-cols-12 gap-2 items-center text-xs py-2.5 px-2.5 rounded-xl hover:bg-slate-50 transition-colors"
             >
-              <div className="col-span-5 font-medium text-slate-700 truncate">
+              <div className="col-span-5 font-medium text-slate-700 truncate" title={exam.subject}>
                 {exam.subject}
               </div>
-              <div className="col-span-4 text-slate-600 font-semibold">
+              <div className="col-span-4 text-slate-600 font-semibold truncate">
                 {exam.class}
               </div>
-              <div className="col-span-3 text-right text-slate-500 font-medium">
+              <div className="col-span-3 text-right text-slate-500 font-medium whitespace-nowrap text-[11px]">
                 {exam.date}
               </div>
             </div>

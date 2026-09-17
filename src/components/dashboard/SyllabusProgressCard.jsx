@@ -7,12 +7,12 @@ export const SyllabusProgressCard = () => {
   const { setCurrentPage } = useApp();
 
   return (
-    <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+    <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between">
       <div>
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
               <BookOpen className="w-4 h-4" />
             </div>
             <h3 className="font-bold text-slate-900 text-sm">Syllabus Progress</h3>
@@ -34,8 +34,8 @@ export const SyllabusProgressCard = () => {
               className="group cursor-pointer"
             >
               <div className="flex items-center justify-between text-xs font-semibold text-slate-700 mb-1.5">
-                <span className="group-hover:text-blue-600 transition-colors">{item.subject}</span>
-                <div className="flex items-center gap-1">
+                <span className="group-hover:text-blue-600 transition-colors truncate pr-2">{item.subject}</span>
+                <div className="flex items-center gap-1 flex-shrink-0">
                   <span className="font-bold text-slate-800">{item.progress}%</span>
                   <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
                 </div>

@@ -36,16 +36,16 @@ export const AddLessonPlanModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-xl w-full border border-slate-200 overflow-hidden animate-fade-in flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-3 sm:p-4 overflow-y-auto">
+      <div className="bg-white rounded-3xl shadow-2xl max-w-xl w-full border border-slate-200 overflow-hidden animate-fade-in flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="p-6 bg-slate-900 text-white flex items-center justify-between">
+        <div className="p-4 sm:p-6 bg-slate-900 text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-rose-600 flex items-center justify-center text-white">
+            <div className="w-10 h-10 rounded-xl bg-rose-600 flex items-center justify-center text-white flex-shrink-0">
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-lg leading-tight">Add Lesson Plan</h3>
+              <h3 className="font-bold text-base sm:text-lg leading-tight">Add Lesson Plan</h3>
               <p className="text-xs text-slate-400 mt-0.5">Curriculum & Pedagogical Preparation (Nursery to 10th)</p>
             </div>
           </div>
@@ -58,7 +58,7 @@ export const AddLessonPlanModal = () => {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 flex-1 overflow-y-auto">
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Lesson / Topic Title *
@@ -73,7 +73,7 @@ export const AddLessonPlanModal = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Target Class & Section
@@ -128,7 +128,7 @@ export const AddLessonPlanModal = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Teaching Aids / Tools

@@ -27,16 +27,16 @@ export const MarkAttendanceModal = () => {
   const attendanceRate = Math.round((presentCount / (classStudents.length || 1)) * 100);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-3 sm:p-4 overflow-y-auto">
       <div className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full border border-slate-200 overflow-hidden animate-fade-in flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="p-6 bg-slate-900 text-white flex items-center justify-between">
+        <div className="p-4 sm:p-6 bg-slate-900 text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-lg leading-tight">Mark Student Attendance</h3>
+              <h3 className="font-bold text-base sm:text-lg leading-tight">Mark Student Attendance</h3>
               <p className="text-xs text-slate-400 mt-0.5">{selectedDate} • {selectedClass}</p>
             </div>
           </div>
@@ -49,7 +49,7 @@ export const MarkAttendanceModal = () => {
         </div>
 
         {/* Controls & Quick Actions */}
-        <div className="p-5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+        <div className="p-3.5 sm:p-5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <select
               value={selectedClass}
@@ -84,7 +84,7 @@ export const MarkAttendanceModal = () => {
         </div>
 
         {/* Summary Metric Pills */}
-        <div className="grid grid-cols-4 gap-3 px-6 py-3 bg-white border-b border-slate-100 text-center text-xs">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-white border-b border-slate-100 text-center text-xs">
           <div className="p-2 bg-slate-50 rounded-xl">
             <span className="text-slate-400 block text-[10px] uppercase font-semibold">Total</span>
             <span className="font-bold text-slate-800 text-sm">{classStudents.length}</span>
@@ -104,30 +104,30 @@ export const MarkAttendanceModal = () => {
         </div>
 
         {/* Student Roster List */}
-        <div className="flex-1 overflow-y-auto p-6 divide-y divide-slate-100">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 divide-y divide-slate-100">
           {classStudents.length > 0 ? (
             classStudents.map((stu) => (
               <div key={stu.id} className="py-3 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <span className="w-6 text-xs font-bold text-slate-400 text-center">
+                <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                  <span className="w-5 sm:w-6 text-xs font-bold text-slate-400 text-center flex-shrink-0">
                     #{stu.rollNo}
                   </span>
                   <img
                     src={stu.photo}
                     alt={stu.name}
-                    className="w-9 h-9 rounded-full object-cover border border-slate-200"
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover border border-slate-200 flex-shrink-0"
                   />
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-900">{stu.name}</h4>
-                    <p className="text-[11px] text-slate-400">Parent: {stu.fatherName} ({stu.parentContact})</p>
+                  <div className="min-w-0 truncate">
+                    <h4 className="text-xs font-bold text-slate-900 truncate">{stu.name}</h4>
+                    <p className="text-[11px] text-slate-400 truncate">Parent: {stu.fatherName} ({stu.parentContact})</p>
                   </div>
                 </div>
 
                 {/* Status Selector Pills */}
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 flex-shrink-0">
                   <button
                     onClick={() => updateStudentAttendance(stu.id, 'Present')}
-                    className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
+                    className={`w-7 h-7 sm:w-auto sm:h-auto sm:px-3 sm:py-1 rounded-xl text-xs font-bold transition-all ${
                       stu.attendanceStatus === 'Present'
                         ? 'bg-emerald-600 text-white shadow-sm'
                         : 'bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-700'
@@ -137,7 +137,7 @@ export const MarkAttendanceModal = () => {
                   </button>
                   <button
                     onClick={() => updateStudentAttendance(stu.id, 'Absent')}
-                    className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
+                    className={`w-7 h-7 sm:w-auto sm:h-auto sm:px-3 sm:py-1 rounded-xl text-xs font-bold transition-all ${
                       stu.attendanceStatus === 'Absent'
                         ? 'bg-rose-600 text-white shadow-sm'
                         : 'bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-700'
@@ -147,7 +147,7 @@ export const MarkAttendanceModal = () => {
                   </button>
                   <button
                     onClick={() => updateStudentAttendance(stu.id, 'Late')}
-                    className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
+                    className={`w-7 h-7 sm:w-auto sm:h-auto sm:px-3 sm:py-1 rounded-xl text-xs font-bold transition-all ${
                       stu.attendanceStatus === 'Late'
                         ? 'bg-amber-500 text-white shadow-sm'
                         : 'bg-slate-100 text-slate-600 hover:bg-amber-50 hover:text-amber-700'
@@ -166,12 +166,12 @@ export const MarkAttendanceModal = () => {
         </div>
 
         {/* Footer & Submit */}
-        <div className="p-5 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+        <div className="p-4 sm:p-5 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           <div className="flex items-center gap-2 text-xs text-slate-500">
-            <AlertCircle className="w-4 h-4 text-blue-600" />
-            <span>Parents of absent students will receive automated SMS alert.</span>
+            <AlertCircle className="w-4 h-4 text-blue-600 flex-shrink-0" />
+            <span className="text-[11px] sm:text-xs">Parents of absent students will receive automated SMS alert.</span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-end gap-3 flex-shrink-0">
             <button
               onClick={() => closeModal('markAttendance')}
               className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-200/60 rounded-xl transition-colors"
@@ -180,10 +180,10 @@ export const MarkAttendanceModal = () => {
             </button>
             <button
               onClick={() => submitClassAttendance(selectedClass)}
-              className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-600/30 transition-all flex items-center gap-2"
+              className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-600/30 transition-all flex items-center justify-center gap-2"
             >
               <Send className="w-3.5 h-3.5" />
-              <span>Submit & Notify Parents</span>
+              <span>Submit & Notify</span>
             </button>
           </div>
         </div>

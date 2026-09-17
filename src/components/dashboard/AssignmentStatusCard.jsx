@@ -10,15 +10,14 @@ export const AssignmentStatusCard = () => {
   const radius = 38;
   const circumference = 2 * Math.PI * radius;
   const submittedStroke = (assignmentStatusData.submittedPercentage / 100) * circumference;
-  const pendingStroke = (assignmentStatusData.pendingPercentage / 100) * circumference;
 
   return (
-    <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+    <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between">
       <div>
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
               <FileSpreadsheet className="w-4 h-4" />
             </div>
             <h3 className="font-bold text-slate-900 text-sm">Assignment Status</h3>
@@ -32,9 +31,9 @@ export const AssignmentStatusCard = () => {
         </div>
 
         {/* Content: Donut Chart + Legend */}
-        <div className="mt-4 flex items-center justify-between gap-4">
+        <div className="mt-4 flex flex-wrap sm:flex-nowrap items-center justify-between gap-4">
           {/* Donut Chart */}
-          <div className="relative w-28 h-28 flex items-center justify-center flex-shrink-0">
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
             <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
               {/* Background circle */}
               <circle
@@ -74,7 +73,7 @@ export const AssignmentStatusCard = () => {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-              <span className="text-base font-extrabold text-slate-900 leading-none">
+              <span className="text-sm sm:text-base font-extrabold text-slate-900 leading-none">
                 {assignmentStatusData.submittedPercentage}%
               </span>
               <span className="text-[10px] font-semibold text-slate-500 mt-0.5">
@@ -84,10 +83,10 @@ export const AssignmentStatusCard = () => {
           </div>
 
           {/* Legend */}
-          <div className="flex-1 space-y-2.5">
+          <div className="flex-1 space-y-2.5 w-full">
             <div className="flex items-center justify-between text-xs">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 flex-shrink-0" />
                 <span className="text-slate-600 font-medium">Submitted</span>
               </div>
               <span className="font-bold text-slate-800">
@@ -97,7 +96,7 @@ export const AssignmentStatusCard = () => {
 
             <div className="flex items-center justify-between text-xs">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0" />
                 <span className="text-slate-600 font-medium">Pending</span>
               </div>
               <span className="font-bold text-slate-800">
@@ -107,7 +106,7 @@ export const AssignmentStatusCard = () => {
 
             <div className="flex items-center justify-between text-xs">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-300 flex-shrink-0" />
                 <span className="text-slate-600 font-medium">Not Submitted</span>
               </div>
               <span className="font-bold text-slate-800">

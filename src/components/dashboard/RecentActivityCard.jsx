@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 export const RecentActivityCard = () => {
-  const { activities, setCurrentPage } = useApp();
+  const { activities } = useApp();
 
   const getIcon = (iconName) => {
     switch (iconName) {
@@ -30,7 +30,7 @@ export const RecentActivityCard = () => {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+    <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between">
       <div>
         {/* Header */}
         <div className="flex items-center gap-2 pb-3 border-b border-slate-100">
@@ -50,7 +50,7 @@ export const RecentActivityCard = () => {
                   <Icon className="w-4 h-4" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-semibold text-slate-800 truncate">
+                  <p className="text-xs font-semibold text-slate-800 truncate" title={act.title}>
                     {act.title}
                   </p>
                   <p className="text-[11px] text-slate-400 font-medium">

@@ -102,12 +102,12 @@ export const MySubjectsPage = () => {
       </div>
 
       {/* Stage Selector Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1">
+      <div className="flex items-center gap-2 overflow-x-auto pb-1.5 touch-scroll no-scrollbar max-w-full">
         {CLASS_CATEGORIES.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 ${
+            className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 flex-shrink-0 ${
               selectedCategory === cat.id
                 ? 'bg-slate-900 text-white shadow-sm'
                 : 'bg-white hover:bg-slate-100 text-slate-600 border border-slate-200'
@@ -120,11 +120,11 @@ export const MySubjectsPage = () => {
       </div>
 
       {/* Subjects Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {filteredSubjects.map((sub) => (
           <div
             key={sub.id}
-            className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between"
+            className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-sm flex flex-col justify-between"
           >
             <div>
               <div className="flex items-start justify-between">

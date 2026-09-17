@@ -14,14 +14,14 @@ export const DashboardPage = () => {
   const { profile } = useApp();
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-5 sm:space-y-6 animate-fade-in">
       {/* Greeting Header */}
       <div>
-        <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+        <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
           <span>Good Morning, {profile.name.split(' ')[0]}!</span>
           <span className="text-xl">☀️</span>
         </h2>
-        <p className="text-sm text-slate-500 font-medium mt-1">
+        <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5 sm:mt-1">
           Here's what's happening with your classes today.
         </p>
       </div>
@@ -30,21 +30,25 @@ export const DashboardPage = () => {
       <MetricCards />
 
       {/* Row 1: Today's Timetable, Upcoming Exams, Recent Announcements */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         <TimetableCard />
         <UpcomingExamsCard />
-        <AnnouncementsCard />
+        <div className="md:col-span-2 lg:col-span-1">
+          <AnnouncementsCard />
+        </div>
       </div>
 
       {/* Row 2: Syllabus Progress, Assignment Status, Quick Actions */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         <SyllabusProgressCard />
         <AssignmentStatusCard />
-        <QuickActionsCard />
+        <div className="md:col-span-2 lg:col-span-1">
+          <QuickActionsCard />
+        </div>
       </div>
 
       {/* Row 3: My Classes & Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
         <div className="lg:col-span-8">
           <MyClassesTable />
         </div>

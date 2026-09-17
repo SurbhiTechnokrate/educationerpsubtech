@@ -67,24 +67,24 @@ export const MyClassesPage = () => {
       </div>
 
       {/* Class Teacher Primary Highlight Card */}
-      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-800 rounded-3xl p-6 text-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-800 rounded-3xl p-5 sm:p-6 text-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6 relative overflow-hidden">
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold uppercase tracking-wider mb-2">
             <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
             Primary Class Teacher Designation
           </div>
-          <h3 className="text-2xl font-black">Class 8 - Division A (Lead Faculty Roster)</h3>
+          <h3 className="text-xl sm:text-2xl font-black">Class 8 - Division A (Lead Faculty Roster)</h3>
           <p className="text-blue-100 text-xs mt-1 max-w-xl">
             Designated Class Teacher for Class 8-A, coordinating daily biometric attendance, student mentoring, parent communications, term progress reports, and exam moderation across wings.
           </p>
-          <div className="flex items-center gap-6 mt-4 text-xs font-medium text-blue-100">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-6 mt-4 text-xs font-medium text-blue-100">
             <span>Enrolled Students: <strong className="text-white">32</strong></span>
             <span>Avg Attendance: <strong className="text-white">94.5%</strong></span>
             <span>Room: <strong className="text-white">Room 204</strong></span>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2.5 w-full md:w-auto relative z-10">
+        <div className="flex flex-col sm:flex-row md:flex-col gap-2.5 w-full md:w-auto relative z-10">
           <button
             onClick={() => setCurrentPage('students')}
             className="px-5 py-2.5 bg-white text-blue-700 hover:bg-blue-50 rounded-xl text-xs font-bold shadow-md transition-colors text-center"
@@ -101,13 +101,13 @@ export const MyClassesPage = () => {
       </div>
 
       {/* Grade Level Stage Selector Pills & Search */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-2 overflow-x-auto pb-1">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1.5 touch-scroll no-scrollbar max-w-full">
           {CLASS_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 ${
+              className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 flex-shrink-0 ${
                 selectedCategory === cat.id
                   ? 'bg-slate-900 text-white shadow-md'
                   : 'bg-white hover:bg-slate-100 text-slate-600 border border-slate-200'
@@ -119,7 +119,7 @@ export const MyClassesPage = () => {
           ))}
         </div>
 
-        <div className="relative w-full max-w-xs">
+        <div className="relative w-full sm:max-w-xs flex-shrink-0">
           <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
@@ -132,7 +132,7 @@ export const MyClassesPage = () => {
       </div>
 
       {/* All Classes Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {filteredClasses.map((cls) => (
           <div
             key={cls.id}

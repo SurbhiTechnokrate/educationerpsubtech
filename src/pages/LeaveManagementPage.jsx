@@ -13,19 +13,19 @@ export const LeaveManagementPage = () => {
   const { leaveData, openModal } = useApp();
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-5 sm:space-y-6 animate-fade-in">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">Faculty Leave Management</h2>
-          <p className="text-sm text-slate-500 font-medium mt-0.5">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">Faculty Leave Management</h2>
+          <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
             Leave balances, substitute teacher allocations, and approval workflow (BRD §32 & §53).
           </p>
         </div>
 
         <button
           onClick={() => openModal('applyLeave')}
-          className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold shadow-md shadow-amber-600/30 transition-all flex items-center gap-1.5"
+          className="self-start sm:self-auto px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold shadow-md shadow-amber-600/30 transition-all flex items-center gap-1.5"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>Apply for Leave</span>
@@ -33,53 +33,53 @@ export const LeaveManagementPage = () => {
       </div>
 
       {/* Balances Row */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm">
-          <span className="text-xs font-bold text-slate-400 uppercase">Casual Leave (CL)</span>
-          <div className="flex items-baseline gap-2 mt-1">
-            <span className="text-3xl font-black text-slate-900">{leaveData.balances.casualLeave.remaining}</span>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <div className="bg-white p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm">
+          <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Casual Leave (CL)</span>
+          <div className="flex items-baseline gap-1.5 mt-1">
+            <span className="text-2xl sm:text-3xl font-black text-slate-900">{leaveData.balances.casualLeave.remaining}</span>
             <span className="text-xs text-slate-400">/ {leaveData.balances.casualLeave.total} Days</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">Used: {leaveData.balances.casualLeave.used} days</span>
+          <span className="text-[10px] sm:text-[11px] text-slate-400 mt-1 block">Used: {leaveData.balances.casualLeave.used} days</span>
         </div>
 
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm">
-          <span className="text-xs font-bold text-slate-400 uppercase">Sick Leave (SL)</span>
-          <div className="flex items-baseline gap-2 mt-1">
-            <span className="text-3xl font-black text-slate-900">{leaveData.balances.sickLeave.remaining}</span>
+        <div className="bg-white p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm">
+          <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Sick Leave (SL)</span>
+          <div className="flex items-baseline gap-1.5 mt-1">
+            <span className="text-2xl sm:text-3xl font-black text-slate-900">{leaveData.balances.sickLeave.remaining}</span>
             <span className="text-xs text-slate-400">/ {leaveData.balances.sickLeave.total} Days</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">Used: {leaveData.balances.sickLeave.used} days</span>
+          <span className="text-[10px] sm:text-[11px] text-slate-400 mt-1 block">Used: {leaveData.balances.sickLeave.used} days</span>
         </div>
 
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm">
-          <span className="text-xs font-bold text-slate-400 uppercase">Earned Leave (EL)</span>
-          <div className="flex items-baseline gap-2 mt-1">
-            <span className="text-3xl font-black text-slate-900">{leaveData.balances.earnedLeave.remaining}</span>
+        <div className="bg-white p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm">
+          <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Earned Leave (EL)</span>
+          <div className="flex items-baseline gap-1.5 mt-1">
+            <span className="text-2xl sm:text-3xl font-black text-slate-900">{leaveData.balances.earnedLeave.remaining}</span>
             <span className="text-xs text-slate-400">/ {leaveData.balances.earnedLeave.total} Days</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">Used: {leaveData.balances.earnedLeave.used} days</span>
+          <span className="text-[10px] sm:text-[11px] text-slate-400 mt-1 block">Used: {leaveData.balances.earnedLeave.used} days</span>
         </div>
 
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm">
-          <span className="text-xs font-bold text-slate-400 uppercase">Restricted Holiday</span>
-          <div className="flex items-baseline gap-2 mt-1">
-            <span className="text-3xl font-black text-slate-900">{leaveData.balances.restrictedHoliday.remaining}</span>
+        <div className="bg-white p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm">
+          <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase">Restricted Holiday</span>
+          <div className="flex items-baseline gap-1.5 mt-1">
+            <span className="text-2xl sm:text-3xl font-black text-slate-900">{leaveData.balances.restrictedHoliday.remaining}</span>
             <span className="text-xs text-slate-400">/ {leaveData.balances.restrictedHoliday.total} Days</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">Used: {leaveData.balances.restrictedHoliday.used} days</span>
+          <span className="text-[10px] sm:text-[11px] text-slate-400 mt-1 block">Used: {leaveData.balances.restrictedHoliday.used} days</span>
         </div>
       </div>
 
       {/* Leave Application History Table */}
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+        <div className="p-4 sm:p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
           <h3 className="font-bold text-base text-slate-900">Leave Requests & Multi-Level Status</h3>
           <span className="text-xs text-slate-400">Teacher → HOD → Principal Workflow</span>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs border-collapse">
+        <div className="overflow-x-auto touch-scroll">
+          <table className="w-full min-w-[640px] text-left text-xs border-collapse">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200 text-slate-400 uppercase text-[11px] font-bold">
                 <th className="py-3 px-4">Leave ID</th>

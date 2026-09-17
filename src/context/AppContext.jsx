@@ -24,8 +24,12 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   // Navigation
   const [currentPage, setCurrentPage] = useState('dashboard');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [globalSearch, setGlobalSearch] = useState('');
   const [selectedDate, setSelectedDate] = useState('Monday, 15 Sep 2025');
+
+  const toggleSidebar = () => setSidebarOpen(prev => !prev);
+  const closeSidebar = () => setSidebarOpen(false);
 
   // Core Data
   const [profile, setProfile] = useState(teacherProfile);
@@ -253,6 +257,10 @@ export const AppProvider = ({ children }) => {
       value={{
         currentPage,
         setCurrentPage,
+        sidebarOpen,
+        setSidebarOpen,
+        toggleSidebar,
+        closeSidebar,
         globalSearch,
         setGlobalSearch,
         selectedDate,

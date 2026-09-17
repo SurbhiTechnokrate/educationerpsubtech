@@ -30,16 +30,16 @@ export const ApplyLeaveModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full border border-slate-200 overflow-hidden animate-fade-in flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-3 sm:p-4 overflow-y-auto">
+      <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full border border-slate-200 overflow-hidden animate-fade-in flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="p-6 bg-slate-900 text-white flex items-center justify-between">
+        <div className="p-4 sm:p-6 bg-slate-900 text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center text-white">
+            <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center text-white flex-shrink-0">
               <Clock className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-lg leading-tight">Apply for Leave</h3>
+              <h3 className="font-bold text-base sm:text-lg leading-tight">Apply for Leave</h3>
               <p className="text-xs text-slate-400 mt-0.5">Faculty Leave Workflow (BRD §32)</p>
             </div>
           </div>
@@ -52,7 +52,7 @@ export const ApplyLeaveModal = () => {
         </div>
 
         {/* Leave Balances Quick Bar */}
-        <div className="grid grid-cols-3 gap-2 p-4 bg-slate-50 border-b border-slate-200 text-center text-xs">
+        <div className="grid grid-cols-3 gap-2 p-3.5 sm:p-4 bg-slate-50 border-b border-slate-200 text-center text-xs">
           <div className="p-2 bg-white rounded-xl border border-slate-200">
             <span className="text-[10px] text-slate-400 font-semibold block">Casual Leave</span>
             <span className="font-bold text-slate-800">{leaveData.balances.casualLeave.remaining} Left</span>
@@ -68,7 +68,7 @@ export const ApplyLeaveModal = () => {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 text-xs">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 text-xs flex-1 overflow-y-auto">
           <div>
             <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Leave Type
@@ -85,7 +85,7 @@ export const ApplyLeaveModal = () => {
             </select>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 From Date

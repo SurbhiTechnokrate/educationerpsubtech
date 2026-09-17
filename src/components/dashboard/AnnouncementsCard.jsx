@@ -6,12 +6,12 @@ export const AnnouncementsCard = () => {
   const { announcements, setCurrentPage } = useApp();
 
   return (
-    <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+    <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between h-full">
       <div>
         {/* Card Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
               <Megaphone className="w-4 h-4" />
             </div>
             <h3 className="font-bold text-slate-900 text-sm">Recent Announcements</h3>
@@ -45,7 +45,7 @@ export const AnnouncementsCard = () => {
                   </p>
                 </div>
               </div>
-              <span className="text-[11px] font-medium text-slate-400 flex-shrink-0 whitespace-nowrap">
+              <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 flex-shrink-0 whitespace-nowrap">
                 {item.date}
               </span>
             </div>

@@ -78,11 +78,11 @@ export const ReportsPage = () => {
       </div>
 
       {/* Reports Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {reports.map((rep, idx) => (
           <div
             key={idx}
-            className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between"
+            className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-sm flex flex-col justify-between"
           >
             <div>
               <div className="flex items-start justify-between gap-3">

@@ -77,14 +77,14 @@ export const Layout = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#f4f6fa] font-sans antialiased text-slate-800">
-      {/* Fixed Sidebar */}
+    <div className="flex min-h-screen bg-[#f4f6fa] font-sans antialiased text-slate-800 relative w-full overflow-x-hidden">
+      {/* Sidebar (Fixed on Desktop, Drawer on Mobile/Tablet) */}
       <Sidebar />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 w-full">
         <Header />
-        <main className="flex-1 p-6 md:p-8 overflow-y-auto max-w-7xl w-full mx-auto">
+        <main className="flex-1 p-3.5 sm:p-5 md:p-8 overflow-y-auto max-w-7xl w-full mx-auto">
           {renderCurrentPage()}
         </main>
       </div>

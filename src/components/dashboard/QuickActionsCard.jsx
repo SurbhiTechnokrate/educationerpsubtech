@@ -51,7 +51,7 @@ export const QuickActionsCard = () => {
   ];
 
   return (
-    <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+    <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex flex-col justify-between h-full">
       <div>
         {/* Header */}
         <div className="flex items-center gap-2 pb-3 border-b border-slate-100">
@@ -60,21 +60,21 @@ export const QuickActionsCard = () => {
         </div>
 
         {/* 2x2 Grid */}
-        <div className="mt-3.5 grid grid-cols-2 gap-3">
+        <div className="mt-3.5 grid grid-cols-2 gap-2.5 sm:gap-3">
           {actions.map((act) => {
             const Icon = act.icon;
             return (
               <button
                 key={act.id}
                 onClick={act.onClick}
-                className={`p-3 rounded-xl border ${act.bg} flex items-center gap-2.5 text-left transition-all duration-150 group shadow-sm`}
+                className={`p-2.5 sm:p-3 rounded-xl border ${act.bg} flex items-center gap-2 sm:gap-2.5 text-left transition-all duration-150 group shadow-sm`}
               >
                 <div
-                  className={`w-9 h-9 rounded-xl ${act.iconBg} ${act.iconColor} flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform`}
+                  className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl ${act.iconBg} ${act.iconColor} flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform`}
                 >
                   <Icon className="w-4 h-4" />
                 </div>
-                <span className="text-xs font-bold text-slate-800 leading-tight">
+                <span className="text-[11px] sm:text-xs font-bold text-slate-800 leading-tight">
                   {act.title}
                 </span>
               </button>

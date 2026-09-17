@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import {
+  Menu,
   Search,
   Bell,
   Calendar,
@@ -25,7 +26,8 @@ export const Header = () => {
     announcements,
     geoAttendance,
     handleGeoCheckIn,
-    handleGeoCheckOut
+    handleGeoCheckOut,
+    toggleSidebar
   } = useApp();
 
   const [isNotifOpen, setIsNotifOpen] = useState(false);
@@ -34,6 +36,7 @@ export const Header = () => {
 
   const notifRef = useRef(null);
   const profileRef = useRef(null);
+  const dateRef = useRef(null);
 
   // Close dropdowns on outside click
   useEffect(() => {
@@ -43,6 +46,9 @@ export const Header = () => {
       }
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setIsProfileOpen(false);
+      }
+      if (dateRef.current && !dateRef.current.contains(event.target)) {
+        setIsDatePickerOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -58,45 +64,61 @@ export const Header = () => {
     'Saturday, 20 Sep 2025'
   ];
 
+  // Short version of selected date for tablet & mobile
+  const shortDate = selectedDate.replace(/^[A-Za-z]+,\s*/, '');
+
   return (
-    <header className="bg-white border-b border-slate-200/90 sticky top-0 z-30 px-6 py-3 flex items-center justify-between shadow-sm">
-      {/* Global Search Bar */}
-      <div className="flex-1 max-w-md">
-        <div className="relative">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            value={globalSearch}
-            onChange={(e) => setGlobalSearch(e.target.value)}
-            placeholder="Search anything..."
-            className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all"
-          />
-          {globalSearch && (
-            <button
-              onClick={() => setGlobalSearch('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600"
-            >
-              Clear
-            </button>
-          )}
+    <header className="bg-white border-b border-slate-200/90 sticky top-0 z-30 px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between shadow-sm gap-2 sm:gap-4">
+      {/* Left Area: Mobile/Tablet Hamburger + Global Search */}
+      <div className="flex items-center gap-2 flex-1 min-w-0">
+        {/* Hamburger Menu button on Tablet & Mobile */}
+        <button
+          onClick={toggleSidebar}
+          className="lg:hidden p-2 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-colors flex-shrink-0 focus:outline-none"
+          aria-label="Toggle navigation menu"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+
+        {/* Global Search Bar */}
+        <div className="flex-1 max-w-[160px] sm:max-w-xs md:max-w-md">
+          <div className="relative">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              value={globalSearch}
+              onChange={(e) => setGlobalSearch(e.target.value)}
+              placeholder="Search anything..."
+              className="w-full pl-9 sm:pl-10 pr-3 py-1.5 sm:py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all"
+            />
+            {globalSearch && (
+              <button
+                onClick={() => setGlobalSearch('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] sm:text-xs text-slate-400 hover:text-slate-600 bg-slate-200/60 px-1.5 py-0.5 rounded"
+              >
+                Clear
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Right controls */}
-      <div className="flex items-center gap-4">
+      {/* Right Area: Date Selector, Notifications, Profile */}
+      <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
         {/* Date Selector Pill */}
-        <div className="relative">
+        <div className="relative" ref={dateRef}>
           <button
             onClick={() => setIsDatePickerOpen(!isDatePickerOpen)}
-            className="flex items-center gap-2 px-3.5 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 transition-colors"
+            className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 transition-colors"
           >
-            <Calendar className="w-3.5 h-3.5 text-blue-600" />
-            <span>{selectedDate}</span>
+            <Calendar className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
+            <span className="hidden md:inline">{selectedDate}</span>
+            <span className="inline md:hidden">{shortDate}</span>
             <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
           </button>
 
           {isDatePickerOpen && (
-            <div className="absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50 animate-fade-in">
+            <div className="absolute right-0 mt-2 w-52 max-w-[calc(100vw-1.5rem)] bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50 animate-fade-in">
               <div className="px-3 py-1.5 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
                 Select Academic Date
               </div>
@@ -127,13 +149,13 @@ export const Header = () => {
             aria-label="Notifications"
           >
             <Bell className="w-5 h-5" />
-            <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-rose-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center border-2 border-white animate-pulse">
+            <span className="absolute top-1 right-1 sm:top-1.5 sm:right-1.5 w-4 h-4 bg-rose-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center border-2 border-white animate-pulse">
               3
             </span>
           </button>
 
           {isNotifOpen && (
-            <div className="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-fade-in">
+            <div className="absolute right-0 mt-2 w-72 sm:w-80 max-w-[calc(100vw-1.5rem)] bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-fade-in">
               <div className="px-4 pb-2 border-b border-slate-100 flex items-center justify-between">
                 <span className="font-bold text-sm text-slate-900">Notifications</span>
                 <span className="text-[11px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
@@ -141,7 +163,7 @@ export const Header = () => {
                 </span>
               </div>
               <div className="divide-y divide-slate-100 max-h-72 overflow-y-auto">
-                <div className="p-3 hover:bg-slate-50 transition-colors cursor-pointer" onClick={() => setCurrentPage('announcements')}>
+                <div className="p-3 hover:bg-slate-50 transition-colors cursor-pointer" onClick={() => { setCurrentPage('announcements'); setIsNotifOpen(false); }}>
                   <div className="flex items-start gap-2.5">
                     <span className="w-2 h-2 rounded-full bg-teal-500 mt-1.5 flex-shrink-0" />
                     <div>
@@ -151,7 +173,7 @@ export const Header = () => {
                     </div>
                   </div>
                 </div>
-                <div className="p-3 hover:bg-slate-50 transition-colors cursor-pointer" onClick={() => setCurrentPage('assignments')}>
+                <div className="p-3 hover:bg-slate-50 transition-colors cursor-pointer" onClick={() => { setCurrentPage('assignments'); setIsNotifOpen(false); }}>
                   <div className="flex items-start gap-2.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
                     <div>
@@ -161,7 +183,7 @@ export const Header = () => {
                     </div>
                   </div>
                 </div>
-                <div className="p-3 hover:bg-slate-50 transition-colors cursor-pointer" onClick={() => setCurrentPage('messages')}>
+                <div className="p-3 hover:bg-slate-50 transition-colors cursor-pointer" onClick={() => { setCurrentPage('messages'); setIsNotifOpen(false); }}>
                   <div className="flex items-start gap-2.5">
                     <span className="w-2 h-2 rounded-full bg-purple-500 mt-1.5 flex-shrink-0" />
                     <div>
@@ -191,7 +213,7 @@ export const Header = () => {
         <div className="relative" ref={profileRef}>
           <button
             onClick={() => setIsProfileOpen(!isProfileOpen)}
-            className="flex items-center gap-3 p-1 pl-2 hover:bg-slate-100 rounded-2xl transition-colors focus:outline-none"
+            className="flex items-center gap-2 p-1 pl-1.5 sm:pl-2 hover:bg-slate-100 rounded-2xl transition-colors focus:outline-none"
           >
             <div className="text-right hidden sm:block">
               <div className="text-sm font-bold text-slate-800 leading-tight">{profile.name}</div>
@@ -200,16 +222,16 @@ export const Header = () => {
             <img
               src={profile.avatar}
               alt={profile.name}
-              className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm ring-2 ring-slate-100 flex-shrink-0"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-white shadow-sm ring-2 ring-slate-100 flex-shrink-0"
             />
           </button>
 
           {isProfileOpen && (
-            <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-fade-in">
+            <div className="absolute right-0 mt-2 w-60 sm:w-64 max-w-[calc(100vw-1.5rem)] bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-fade-in">
               <div className="px-4 pb-3 border-b border-slate-100">
                 <div className="font-bold text-sm text-slate-900">{profile.name}</div>
                 <div className="text-xs text-slate-500 font-medium">{profile.role}</div>
-                <div className="text-[11px] text-slate-400 mt-1">{profile.email}</div>
+                <div className="text-[11px] text-slate-400 mt-1 truncate">{profile.email}</div>
               </div>
 
               <div className="py-2">

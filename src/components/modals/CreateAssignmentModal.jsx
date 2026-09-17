@@ -35,16 +35,16 @@ export const CreateAssignmentModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-xl w-full border border-slate-200 overflow-hidden animate-fade-in flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-3 sm:p-4 overflow-y-auto">
+      <div className="bg-white rounded-3xl shadow-2xl max-w-xl w-full border border-slate-200 overflow-hidden animate-fade-in flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="p-6 bg-slate-900 text-white flex items-center justify-between">
+        <div className="p-4 sm:p-6 bg-slate-900 text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
               <FilePlus className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold text-lg leading-tight">Create New Assignment</h3>
+              <h3 className="font-bold text-base sm:text-lg leading-tight">Create New Assignment</h3>
               <p className="text-xs text-slate-400 mt-0.5">Publish tasks & track submissions (Nursery to 10th)</p>
             </div>
           </div>
@@ -57,7 +57,7 @@ export const CreateAssignmentModal = () => {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 flex-1 overflow-y-auto">
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Assignment Title *
@@ -72,7 +72,7 @@ export const CreateAssignmentModal = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Target Class & Section
@@ -108,7 +108,7 @@ export const CreateAssignmentModal = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Due Date
@@ -151,11 +151,11 @@ export const CreateAssignmentModal = () => {
 
           {/* Attachment Preview Box */}
           <div className="p-3.5 bg-slate-50 border border-dashed border-slate-300 rounded-2xl flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <Upload className="w-4 h-4 text-blue-600" />
-              <span className="text-xs font-bold text-slate-700">{formData.fileName}</span>
+            <div className="flex items-center gap-2.5 min-w-0">
+              <Upload className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <span className="text-xs font-bold text-slate-700 truncate">{formData.fileName}</span>
             </div>
-            <span className="text-[10px] text-slate-400 font-semibold uppercase">PDF Attached</span>
+            <span className="text-[10px] text-slate-400 font-semibold uppercase flex-shrink-0">PDF Attached</span>
           </div>
 
           {/* Action Buttons */}
